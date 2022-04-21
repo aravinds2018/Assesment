@@ -1,1 +1,7 @@
-
+import pandas as pd
+q1 = pd.read_csv("main.csv")
+q1.head()
+q1.groupby('product_description')['price'].mean()
+q1["price_new"] = q1['price'].fillna(q1.groupby('product_description')['price'].transform("mean"))
+q1[q1["price"].isna()].head()
+q1.to_csv('answer1.csv')
